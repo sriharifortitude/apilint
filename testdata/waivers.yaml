@@ -1,0 +1,9 @@
+waivers:
+  - rule: missing-rate-limit-evidence
+    location: "(whole document)"
+    reason: rate limiting is enforced at the API gateway, outside this spec's control
+    expires: "2030-01-01"
+  - rule: weak-http-basic-auth
+    location: "components.securitySchemes.basicAuth"
+    reason: was meant to be removed once the OAuth migration finished
+    expires: "2025-01-01"

@@ -1,0 +1,59 @@
+openapi: 3.0.3
+info:
+  title: Demo API
+  version: "1.0"
+servers:
+  - url: http://api.example.com
+security:
+  - oauth: []
+paths:
+  /users/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: {type: string}
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: {type: string}
+                  email: {type: string}
+                  password: {type: string}
+  /users:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: {type: string}
+                role: {type: string}
+      responses:
+        "201":
+          description: created, no schema documented
+  /health:
+    get:
+      security: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: {type: string}
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: query
+      name: api_key
+    basicAuth:
+      type: http
+      scheme: basic

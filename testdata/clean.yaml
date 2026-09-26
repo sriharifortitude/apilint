@@ -1,0 +1,32 @@
+openapi: 3.0.3
+info:
+  title: Demo API
+  version: "1.0"
+servers:
+  - url: https://api.example.com
+security:
+  - bearerAuth: []
+paths:
+  /users/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: {type: string}
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: {type: string}
+                  email: {type: string, format: email}
+        "429":
+          description: rate limited
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
